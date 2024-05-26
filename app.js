@@ -30,7 +30,21 @@ function handleSubmit(e) {
     console.log('editing')
   } else {
     console.log('empty value')
+    displayAlert('Please enter value', 'danger')
   }
+}
+
+// display alert
+function displayAlert(text, action) {
+  alert.textContent = text
+  alert.classList.add(`alert-${action}`)
+
+  // remove alert after 3 seconds
+  const timer = setTimeout(() => {
+    alert.textContent = ''
+    alert.classList.remove(`alert-${action}`)
+    clearTimeout(timer)
+  }, 3000)
 }
 
 groceryForm.addEventListener('submit', handleSubmit)
