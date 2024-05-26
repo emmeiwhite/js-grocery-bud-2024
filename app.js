@@ -13,7 +13,7 @@ const clearAllBtn = document.querySelector('.clear-btn')
 
 // Declaring some variables for editing the list
 let editElement
-let editFlag = true
+let editFlag = false
 let editID
 
 /** --- Now Setting up Event Listeners  --- */
