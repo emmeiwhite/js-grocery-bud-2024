@@ -26,6 +26,31 @@ function handleSubmit(e) {
 
   if (value && !editFlag) {
     console.log('add item to the list')
+    const item = `<article class="grocery-item" data-id=${id}>
+            <p class="title">${value}</p>
+            <div class="btn-container">
+              <button
+                type="button"
+                class="edit-btn"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+
+              <button
+                type="button"
+                class="delete-btn"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </article>`
+
+    /** 1) Adding the item & displaying success alert message */
+    groceryContainer.classList.add('show-container')
+    groceryList.insertAdjacentHTML('beforeend', item)
+    displayAlert('Item added to the list', 'success')
+
+    /** 2) Add to the local storage */
   } else if (value && editFlag) {
     console.log('editing')
   } else {
