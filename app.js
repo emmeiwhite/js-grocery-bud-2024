@@ -25,7 +25,6 @@ function handleSubmit(e) {
   const id = new Date().getTime().toString()
 
   if (value && !editFlag) {
-    console.log('add item to the list')
     const item = `<article class="grocery-item" data-id=${id}>
             <p class="title">${value}</p>
             <div class="btn-container">
@@ -51,10 +50,12 @@ function handleSubmit(e) {
     displayAlert('Item added to the list', 'success')
 
     /** 2) Add to the local storage */
+
+    /** 3) Set back to default */
+    setBackToDefault()
   } else if (value && editFlag) {
     console.log('editing')
   } else {
-    console.log('empty value')
     displayAlert('Please enter value', 'danger')
   }
 }
@@ -72,4 +73,24 @@ function displayAlert(text, action) {
   }, 3000)
 }
 
+// clear items
+function clearItems() {
+  console.log('clear button clicked!')
+  groceryContainer.classList.remove('show-container')
+  groceryList.innerHTML = ''
+}
+// set to default
+function setBackToDefault() {
+  input.value = ''
+  editFlag = false
+  editID = ''
+  submitBtn.textContent = 'submit'
+}
+
+// add to the local storage
+function addToLocalStorage(id, value) {
+  console.log('added to the local storage')
+}
+
 groceryForm.addEventListener('submit', handleSubmit)
+clearAllBtn.addEventListener('click', clearItems)
