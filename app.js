@@ -1,26 +1,16 @@
-// ****** SELECT ITEMS **********
-const input = document.querySelector('input')
-const form = document.querySelector('form')
-const ul = document.querySelector('ul')
+// Form DOM Element
+const groceryForm = document.querySelector('.grocery-form')
+const alert = document.querySelector('.alert')
+const input = document.querySelector('#grocery')
 
-// edit option
+// Grocery Container Form Elements
+const groceryContainer = document.querySelector('.grocery-container')
+const groceryList = document.querySelector('.grocery-list')
 
-// ****** EVENT LISTENERS **********
+// Clear All items button
+const clearAllBtn = document.querySelector('.clear-btn')
 
-form.addEventListener('submit', e => {
-  e.preventDefault()
-
-  if (!input.value.trim()) return
-
-  const listItem = document.createElement('li')
-  listItem.textContent = input.value
-  ul.appendChild(listItem)
-
-  input.value = ''
-})
-
-// ****** FUNCTIONS **********
-
-// ****** LOCAL STORAGE **********
-
-// ****** SETUP ITEMS **********
+// Declaring some variables for editing the list
+let editElement
+let editFlag = false
+let editID
