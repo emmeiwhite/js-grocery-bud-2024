@@ -78,6 +78,11 @@ function clearItems() {
   console.log('clear button clicked!')
   groceryContainer.classList.remove('show-container')
   groceryList.innerHTML = ''
+
+  displayAlert('cleared all the items', 'success')
+  setBackToDefault()
+  /** --- To remove the list from local storage as well --- */
+  // localStorage.removeItem('list)
 }
 // set to default
 function setBackToDefault() {
@@ -92,5 +97,36 @@ function addToLocalStorage(id, value) {
   console.log('added to the local storage')
 }
 
+function removeFromLocalStorage(id) {}
+
+/////////////////// WE START FROM HERE ////////////////////////
 groceryForm.addEventListener('submit', handleSubmit)
 clearAllBtn.addEventListener('click', clearItems)
+
+/** ---For edit and delete, we are going with edit bubbling! --- */
+groceryList.addEventListener('click', e => {
+  // A) delete item
+  if (e.target.classList.contains('fa-trash')) {
+    const groceryItem = e.target.closest('.grocery-item')
+    const id = groceryItem.dataset.id
+
+    console.log(id)
+    if (groceryItem) {
+      groceryItem.remove()
+      displayAlert('item deleted', 'success')
+    }
+
+    if (groceryList.children.length === 0) {
+      groceryContainer.classList.remove('show-container')
+    }
+
+    setBackToDefault()
+    // remove from local storage
+    /* removeFromLocalStorage(id) */
+  }
+
+  // B) edit item
+  if (e.target.classList.contains('fa-edit')) {
+    console.log('clicked on the edit button')
+  }
+})
